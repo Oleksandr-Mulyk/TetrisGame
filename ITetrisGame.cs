@@ -10,7 +10,7 @@
 
         public event ScoreChangedHandler? ScoreChanged;
 
-        public event LevelChangedHandler? LevelChanged;
+        public event SpeedChangedHandler? SpeedChanged;
 
         public event GlassLinesRemovedHandler? GlassLinesRemoved;
 
@@ -26,7 +26,11 @@
 
         public int Score { get; set; }
 
-        public int Level { get; set; }
+        public int Speed { get; set; }
+
+        public int MaxSpeed { get; set; }
+
+        public int SpeedStep { get; set; }
 
         public void MoveLeft();
 
@@ -45,7 +49,7 @@
 
     public delegate void ScoreChangedHandler();
 
-    public delegate void LevelChangedHandler();
+    public delegate void SpeedChangedHandler();
 
     public delegate void GlassLinesRemovedHandler();
 }

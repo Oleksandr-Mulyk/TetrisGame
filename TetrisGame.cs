@@ -12,7 +12,7 @@ namespace Cooconica.TetrisGame
 
         public event ScoreChangedHandler? ScoreChanged;
 
-        public event LevelChangedHandler? LevelChanged;
+        public event SpeedChangedHandler? SpeedChanged;
 
         public event GlassLinesRemovedHandler? GlassLinesRemoved;
 
@@ -36,17 +36,21 @@ namespace Cooconica.TetrisGame
             }
         }
 
-        private int _level;
+        private int _speed;
 
-        public int Level
+        public int Speed
         {
-            get => _level;
+            get => _speed;
             set
             {
-                _level = value;
-                LevelChanged?.Invoke();
+                _speed = value;
+                SpeedChanged?.Invoke();
             }
         }
+
+        public int MaxSpeed { get; set; } = 9;
+
+        public int SpeedStep { get; set; } = 10000;
 
         public TetrisGame() => CreateNewGame();
 
@@ -57,7 +61,7 @@ namespace Cooconica.TetrisGame
             CurrentFigure.Move(3, CurrentFigure is Stick0Figure ? -3 : -2);
             NextFigure = FigureGenerator.GetRandomFigure();
             Score = 0;
-            Level = 0;
+            Speed = 0;
         }
 
         public void MoveLeft() => Move(-1, 0);
@@ -172,9 +176,9 @@ namespace Cooconica.TetrisGame
                     _ => 0
                 };
 
-                if (Level < 10 && Score >= (Level) * 10000)
+                if (Speed < MaxSpeed && Score >= (Speed) * SpeedStep)
                 {
-                    ++Level;
+                    ++Speed;
                 }
             }
         }
