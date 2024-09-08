@@ -194,7 +194,7 @@ namespace Cooconica.TetrisGame
                     _ => 0
                 };
 
-                if (Speed < MaxSpeed && Score >= (Speed) * SpeedStep)
+                if (Speed < MaxSpeed && Score >= (Speed + 1) * SpeedStep)
                 {
                     ++Speed;
                 }
