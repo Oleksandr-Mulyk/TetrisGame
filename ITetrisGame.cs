@@ -10,6 +10,8 @@
 
         public event ScoreChangedHandler? ScoreChanged;
 
+        public event HiScoreChangedHandler? HiScoreChanged;
+
         public event SpeedChangedHandler? SpeedChanged;
 
         public event GlassLinesRemovedHandler? GlassLinesRemoved;
@@ -25,6 +27,8 @@
         public void CreateNewGame();
 
         public int Score { get; set; }
+
+        public int HiScore { get; set; }
 
         public int Speed { get; set; }
 
@@ -48,6 +52,8 @@
     public delegate void FigureChangedHandler();
 
     public delegate void ScoreChangedHandler();
+
+    public delegate void HiScoreChangedHandler();
 
     public delegate void SpeedChangedHandler();
 

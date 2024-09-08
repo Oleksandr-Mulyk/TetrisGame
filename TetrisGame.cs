@@ -12,6 +12,8 @@ namespace Cooconica.TetrisGame
 
         public event ScoreChangedHandler? ScoreChanged;
 
+        public event HiScoreChangedHandler? HiScoreChanged;
+
         public event SpeedChangedHandler? SpeedChanged;
 
         public event GlassLinesRemovedHandler? GlassLinesRemoved;
@@ -33,6 +35,22 @@ namespace Cooconica.TetrisGame
             {
                 _score = value;
                 ScoreChanged?.Invoke();
+                if (_score > HiScore)
+                {
+                    HiScore = _score;
+                }
+            }
+        }
+
+        private int _hiScore;
+
+        public int HiScore
+        {
+            get => _hiScore;
+            set
+            {
+                _hiScore = value;
+                HiScoreChanged?.Invoke();
             }
         }
 
